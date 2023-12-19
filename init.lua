@@ -32,11 +32,17 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+  -- 'tpope/vim-sleuth',
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
   {
     -- Set lualine as statusline
@@ -45,7 +51,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'tokyonight',
         component_separators = '|',
         section_separators = '',
       },
@@ -62,13 +68,13 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',  opts = {} },
 
   { import = 'custom.plugins' },
 }, {})
 
 -- colorscheme
-vim.cmd.colorscheme 'onedark'
+vim.cmd.colorscheme 'tokyonight-night'
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -114,15 +120,6 @@ vim.o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 
--- Personal keymaps
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set("n", "<C-n>", vim.cmd.Ex)
-vim.keymap.set("i", "<A-q>", "<Esc>")
-vim.keymap.set("n", "<C-s>", vim.cmd.w)
-vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end)
-vim.keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
-vim.keymap.set("n", "<leader>x", vim.cmd.q);
-
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -144,3 +141,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Personal keymaps
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set("n", "<C-n>", vim.cmd.Ex)
+vim.keymap.set("i", "<A-q>", "<Esc>")
+vim.keymap.set("n", "<C-s>", vim.cmd.w)
+vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end)
+vim.keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
+vim.keymap.set("n", "<leader>x", vim.cmd.q);
+-- allows moving blocks with J and K
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv");
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv");
+-- centers cursor on search
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+-- pastes the same text
+vim.keymap.set("x", "p", "\"_dP")
