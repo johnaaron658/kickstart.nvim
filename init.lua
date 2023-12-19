@@ -143,7 +143,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Personal keymaps
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set("n", "<C-n>", vim.cmd.Ex)
+vim.keymap.set("n", "<C-n>", vim.cmd.Neotree)
 vim.keymap.set("i", "<A-q>", "<Esc>")
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end)
