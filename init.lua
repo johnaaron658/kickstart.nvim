@@ -6,60 +6,63 @@ vim.g.maplocalleader = ' '
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
+	vim.fn.system {
+		'git',
+		'clone',
+		'--filter=blob:none',
+		'https://github.com/folke/lazy.nvim.git',
+		'--branch=stable', -- latest stable release
+		lazypath,
+	}
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure plugins ]]
 require('lazy').setup({
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'tokyonight',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
+	-- Git related plugins
+	'tpope/vim-fugitive',
+	'tpope/vim-rhubarb',
+	{
+		-- Theme inspired by Atom
+		'navarasu/onedark.nvim',
+		priority = 1000,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{
+		"rebelot/kanagawa.nvim",
+	},
+	{
+		-- Set lualine as statusline
+		'nvim-lualine/lualine.nvim',
+		-- See `:help lualine.txt`
+		opts = {
+			options = {
+				icons_enabled = false,
+				theme = 'tokyonight',
+				component_separators = '|',
+				section_separators = '',
+			},
+		},
+	},
 
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
+	{
+		-- Add indentation guides even on blank lines
+		'lukas-reineke/indent-blankline.nvim',
+		-- Enable `lukas-reineke/indent-blankline.nvim`
+		-- See `:help ibl`
+		main = 'ibl',
+		opts = {},
+	},
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',  opts = {} },
+	-- "gc" to comment visual regions/lines
+	{ 'numToStr/Comment.nvim',  opts = {} },
 
-  { import = 'custom.plugins' },
+	{ import = 'custom.plugins' },
 }, {})
 
 -- colorscheme
@@ -77,6 +80,15 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+
+-- neovide visual settings
+vim.g.neovide_padding_top = 0
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_right = 0
+vim.g.neovide_padding_left = 0
+vim.g.neovide_cursor_animate_in_insert_mode = true
+vim.g.neovide_cursor_animate_command_line = true
+vim.g.neovide_cursor_vfx_mode = "pixiedust"
 
 -- scroll off
 vim.opt.scrolloff = 8
@@ -125,22 +137,21 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- [[ Highlight on yank ]]
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = '*',
 })
 
 -- Personal keymaps
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "<C-n>", vim.cmd.Ex)
 vim.keymap.set("n", "<A-n>", vim.cmd.Neotree)
-vim.keymap.set("i", "<A-q>", "<Esc>")
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end)
 vim.keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
-vim.keymap.set("n", "<leader>x", vim.cmd.q);
+vim.keymap.set("n", "<A-q>q", vim.cmd.q);
 -- allows moving blocks with J and K
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv");
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv");
