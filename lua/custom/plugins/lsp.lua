@@ -13,12 +13,9 @@ local servers = {
   -- rust_analyzer = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs'} },
-  csharp_ls = {},
   cssls = {},
-  eslint = {
-    root_dir = require('lspconfig.util').root_pattern('.eslintrc.js', '.eslintrc')
-  },
-	prettier = {},
+  eslint = {},
+	csharp_ls = {},
 
   lua_ls = {
     Lua = {
@@ -32,7 +29,12 @@ local servers = {
 
 -- setup lsps not found in mason
 local other_lsp_setup = function (on_attach, capabilities)
-  require('lspconfig').dartls.setup({
+	local lspconfig = require('lspconfig')
+  lspconfig.prettier.setup({
+    on_attach = on_attach,
+    capabilities = capabilities
+  })
+  lspconfig.dartls.setup({
     on_attach = on_attach,
     capabilities = capabilities
   })
@@ -95,7 +97,6 @@ return
             on_attach = on_attach,
             settings = servers[server_name],
             filetypes = (servers[server_name] or {}).filetypes,
-            root_dir = (servers[server_name] or {}).root_dir,
           }
         end,
       }
