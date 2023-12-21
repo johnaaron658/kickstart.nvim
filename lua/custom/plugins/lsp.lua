@@ -5,6 +5,7 @@ local servers = {
   cssls = {},
   eslint = {},
 	csharp_ls = {},
+	prettier = {},
 
   lua_ls = {
     Lua = {
@@ -19,10 +20,6 @@ local servers = {
 -- setup lsps not found in mason
 local other_lsp_setup = function (on_attach, capabilities)
 	local lspconfig = require('lspconfig')
-  lspconfig.prettier.setup({
-    on_attach = on_attach,
-    capabilities = capabilities
-  })
   lspconfig.dartls.setup({
     on_attach = on_attach,
     capabilities = capabilities
@@ -31,13 +28,13 @@ end
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, _)
+local on_attach = function(_, bufnr)
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end)
   vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end)
   vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end)
   vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end)
-  vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format { async = true } end)
+  vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format { async = true, bufnr = bufnr } end)
   vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end)
 end
 

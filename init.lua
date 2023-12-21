@@ -62,6 +62,10 @@ require('lazy').setup({
 	-- "gc" to comment visual regions/lines
 	{ 'numToStr/Comment.nvim',  opts = {} },
 
+	{
+		'f-person/git-blame.nvim',
+	},
+
 	{ import = 'custom.plugins' },
 }, {})
 
@@ -89,6 +93,7 @@ vim.g.neovide_padding_left = 0
 vim.g.neovide_cursor_animate_in_insert_mode = true
 vim.g.neovide_cursor_animate_command_line = true
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
+vim.g.neovide_scale_factor = 0.75
 
 -- scroll off
 vim.opt.scrolloff = 8
@@ -147,6 +152,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Personal keymaps
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "<C-n>", vim.cmd.Ex)
+vim.keymap.set("i", "<C-c>", '<Esc>')
 vim.keymap.set("n", "<A-n>", vim.cmd.Neotree)
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end)
