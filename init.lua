@@ -79,6 +79,7 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.wrap = false
 vim.opt.relativenumber = true
+vim.opt.virtualedit = "block"
 
 -- Tab stop configs
 vim.opt.tabstop = 2
@@ -112,6 +113,7 @@ vim.o.breakindent = true
 vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
+vim.opt.ignorecase = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
