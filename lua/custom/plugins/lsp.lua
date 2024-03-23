@@ -5,7 +5,6 @@ local servers = {
   cssls = {},
   eslint = {},
 	csharp_ls = {},
-	prettier = {},
 
   lua_ls = {
     Lua = {
