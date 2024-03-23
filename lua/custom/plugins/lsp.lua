@@ -1,10 +1,10 @@
 -- Enable the following language servers
 local servers = {
-  tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs'} },
-  cssls = {},
-  eslint = {},
-	csharp_ls = {},
+ --  tsserver = {},
+ --  html = { filetypes = { 'html', 'twig', 'hbs'} },
+ --  cssls = {},
+ --  eslint = {},
+	-- csharp_ls = {},
 
   lua_ls = {
     Lua = {
@@ -84,6 +84,6 @@ return
         end,
       }
 
-      other_lsp_setup(on_attach, capabilities)
+      -- other_lsp_setup(on_attach, capabilities)
     end
   }
