@@ -156,7 +156,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- vim.keymap.set("n", "<C-n>", vim.cmd.Ex)
 vim.keymap.set("i", "<C-c>", '<Esc>')
-vim.keymap.set("n", "<C-n>", vim.cmd.NvimTreeFindFileToggle)
+vim.keymap.set("n", "<C-n>", "<ESC><cmd>NvimTreeFindFileToggle!<CR>")
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end)
 vim.keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
