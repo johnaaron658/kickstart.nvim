@@ -84,6 +84,6 @@ return
         end,
       }
 
-      -- other_lsp_setup(on_attach, capabilities)
+      other_lsp_setup(on_attach, capabilities)
     end
   }
