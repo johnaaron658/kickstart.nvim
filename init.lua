@@ -157,15 +157,15 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- vim.keymap.set("n", "<C-n>", vim.cmd.Ex)
 vim.keymap.set("i", "<C-c>", '<Esc>')
 vim.keymap.set("n", "<C-n>", "<ESC><cmd>NvimTreeFindFileToggle!<CR>")
-vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("n", "<leader>/", function() require("Comment.api").toggle.linewise.current() end)
 vim.keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
-vim.keymap.set("n", "<A-q>q", vim.cmd.q);
 -- allows moving blocks with J and K
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv");
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv");
 -- centers cursor on search
 vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "<c-u>", "<c-u>zz")
+vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "N", "Nzzzv")
 -- pastes the same text
 -- vim.keymap.set("x", "p", "\"_dP")
