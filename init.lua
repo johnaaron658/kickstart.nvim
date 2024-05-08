@@ -57,6 +57,8 @@ require('lazy').setup({
 		-- See `:help ibl`
 		main = 'ibl',
 		opts = {},
+    branch = "master",
+    commit = "29be0919b91fb59eca9e90690d76014233392bef",
 	},
 
 	-- "gc" to comment visual regions/lines
@@ -94,6 +96,7 @@ vim.g.neovide_padding_left = 0
 vim.g.neovide_cursor_animate_in_insert_mode = true
 vim.g.neovide_cursor_animate_command_line = true
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
+vim.g.neovide_scroll_animation_length = 0.05
 vim.g.neovide_scale_factor = 0.75
 vim.o.expandtab = true
 
