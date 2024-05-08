@@ -1,0 +1,34 @@
+{
+  "Print to console": {
+    "prefix": "logs",
+    "body": [
+      "console.log(`$1 ${$2}`);"
+    ],
+    "description": "Log output to console"
+  },
+  "New component": {
+    "prefix": "component",
+    "body": [
+      "import React, { memo } from \"react\";",
+      "",
+      "const propTypes = {",
+      "};",
+      "",
+      "const $1 = (props) => {",
+      "  return $2;",
+      "};",
+      "",
+      "$1.propTypes = propTypes;",
+      "",
+      "module.exports = memo($1);"
+    ],
+    "description": "Create new component"
+  },
+  "Stringify": {
+    "prefix": "stringify",
+    "body": [
+      "JSON.stringify($1)"
+    ],
+    "description": "JSON stringify"
+  }
+}

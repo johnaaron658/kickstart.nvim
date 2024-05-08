@@ -1,0 +1,44 @@
+{
+  "injectrepo": {
+    "prefix": "injectrepo",
+    "body": [
+      "IRepositoryFactory<I$1Repository> _$1RepositoryFactory;",
+      "I$1Repository _$1Repository;",
+      "",
+      "public $TM_FILENAME_BASE()",
+      "{",
+      "    _$1RepositoryFactory = new Dapper$1RepositoryFactory();",
+      "    _$1Repository = _$1RepositoryFactory.Get();",
+      "}",
+      "",
+      "public $TM_FILENAME_BASE(Dapper$1RepositoryFactory factory) ",
+      "{",
+      "    _$1RepositoryFactory = factory;",
+      "    _$1Repository = _$1RepositoryFactory.Get();",
+      "}"
+    ],
+    "description": "injects a repository"
+  },
+  "jsonproperty": {
+    "prefix": "jsonprop",
+    "body": [
+      "[JsonProperty(PropertyName = \"$1\")] ",
+      "public $2 $3 { get; set; }"
+    ]
+  },
+  "dapper": {
+    "prefix": "dapper",
+    "body": [
+      "DapperUtils.WithDapperUsingPrincipal(transaction =>",
+      "    DB.Conn.Execute($@\"",
+      "    $1",
+      "    \"",
+      "    , new {",
+      "         $2",
+      "    }",
+      "    , transaction)",
+      ", Principal);"
+    ]
+  }
+}
+
