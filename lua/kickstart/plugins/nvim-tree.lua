@@ -9,5 +9,7 @@ return {
         group_empty = true,
       }
     })
+
+    vim.keymap.set("n", "<C-n>", "<ESC><cmd>NvimTreeFindFileToggle!<CR>")
   end
 }
