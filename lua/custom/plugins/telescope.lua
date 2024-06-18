@@ -57,6 +57,8 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
+    'sharkdp/fd',
+    'nvim-telescope/telescope-ui-select.nvim'
   },
   config = function ()
     -- [[ Configure Telescope ]]
@@ -79,11 +81,19 @@ return {
           theme = "cursor",
         }
       },
+      extensions = {
+        ["ui-select"] = {
+          require("telescope.themes").get_cursor()
+        }
+      },
     }
 
-    
+    require("telescope").load_extension("ui-select")
+
     local withTheme = function (picker)
-      local theme = require('telescope.themes').get_dropdown()
+      local theme = require('telescope.themes').get_dropdown({
+        previewer = false
+      })
 
       return function ()
         picker(theme)
