@@ -1,7 +1,10 @@
 return {
   "windwp/nvim-autopairs",
   -- Optional dependency
-  dependencies = { 'hrsh7th/nvim-cmp' },
+  dependencies = {
+    'hrsh7th/nvim-cmp',
+    'windwp/nvim-ts-autotag',
+  },
   config = function()
     require("nvim-autopairs").setup {}
     -- If you want to automatically add `(` after selecting a function or method
@@ -11,5 +14,22 @@ return {
       'confirm_done',
       cmp_autopairs.on_confirm_done()
     )
+
+    require('nvim-ts-autotag').setup({
+      opts = {
+        -- Defaults
+        enable_close = true, -- Auto close tags
+        enable_rename = true, -- Auto rename pairs of tags
+        enable_close_on_slash = false -- Auto close on trailing </
+      },
+      -- Also override individual filetype configs, these take priority.
+      -- Empty by default, useful if one of the "opts" global settings
+      -- doesn't work well in a specific filetype
+      per_filetype = {
+        ["html"] = {
+          enable_close = false
+        }
+      }
+    })
   end,
 }

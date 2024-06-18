@@ -30,5 +30,30 @@
       "JSON.stringify($1)"
     ],
     "description": "JSON stringify"
+  },
+  "jest test": {
+    "prefix": "describe",
+    "body": [
+"import React from \"react\";",
+"import { configure, mount } from \"enzyme\";",
+"import Adapter from \"@wojtekmaj/enzyme-adapter-react-17\";",
+"",
+"configure({ adapter: new Adapter() });",
+"describe(\"$1.render\", () => {",
+"",
+"});"
+    ],
+    "description": "Create a new jest test suite"
+  },
+  "jest test 2": {
+    "prefix": "it",
+    "body": [
+"  it(\"$1\", () => {",
+"    const wrapper = mount($2);",
+"",
+"    wrapper.unmount();",
+"  });"
+    ],
+    "description": "add new test in test suite"
   }
 }
