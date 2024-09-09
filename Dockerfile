@@ -7,6 +7,7 @@ ENV TZ=Asia/Manila
 
 EXPOSE 8080 8081 8082 8083 8084 8085
 
+
 # Update repositories and install software:
 # 1. curl.
 # 2. fzf for fast file search.
@@ -22,6 +23,7 @@ EXPOSE 8080 8081 8082 8083 8084 8085
 # 12. tzdata to set default container timezone.
 # 13. Everything needed to install Neovim from source.
 RUN apt-get update 
+RUN apt-get -y install wget
 RUN apt-get -y install curl 
 RUN apt-get -y install fzf 
 RUN apt-get -y install ripgrep 
@@ -45,6 +47,15 @@ RUN apt-get -y install pkg-config
 RUN apt-get -y install zip 
 RUN apt-get -y install unzip 
 
+# Installing dotnet
+RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
+RUN rm packages-microsoft-prod.deb
+RUN apt-get update
+RUN apt-get -y install dotnet-sdk-8.0 
+
+#Installing lazy fonts
+RUN echo 28 | bash -c  "$(curl -fsSL https://raw.githubusercontent.com/officialrajdeepsingh/nerd-fonts-installer/main/install.sh)"
 
 # Create TMP dir
 RUN mkdir -p /root/TMP
