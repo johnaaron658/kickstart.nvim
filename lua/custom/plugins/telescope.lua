@@ -93,12 +93,13 @@ return {
     require("telescope").load_extension("ui-select")
 
     local withTheme = function (picker)
-      local theme = require('telescope.themes').get_dropdown({
-        previewer = true
-      })
+      -- local theme = require('telescope.themes').get_dropdown({
+      --   previewer = true
+      -- })
 
       return function ()
-        picker(theme)
+        picker()
+        -- picker(theme)
       end
     end
 
