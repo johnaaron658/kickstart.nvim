@@ -78,7 +78,7 @@ return {
       },
       pickers = {
         find_files = {
-          theme = "cursor",
+          -- theme = "cursor",
         }
       },
       extensions = {
